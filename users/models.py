@@ -17,9 +17,5 @@ class User(AbstractUser):
     def __str__(self):
         return "%s - %s" % (self.username, self.name)
 
-    def clean_email(self):
-        EmailAddress.objects.get_or_create(user=self, email=self.email, primary=True, verified=True)
-
     def save(self, *args, **kwargs):
         super(User, self).save(*args, **kwargs)
-        self.clean_email()
