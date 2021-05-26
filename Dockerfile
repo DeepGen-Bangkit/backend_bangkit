@@ -1,11 +1,16 @@
-FROM python:3.6
+FROM python:3.7
 
-WORKDIR /app
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-COPY requirements.txt ./
+# Set work directory
+WORKDIR /code
+
+# Install dependencies
+COPY requirements.txt ./code/
 
 RUN pip install -no-cache-dir -r requirements.txt
 
-EXPOSE 8000
-
-CMD exec gunicorn dewadjango.wsgi:application -bind 0.0.0.0:8000 -workers 3
+# Copy project
+COPY . /code/
