@@ -1,0 +1,10 @@
+.env
+*.pyc
+staticfiles
+db.sqlite3
+.idea
+media
+geoip
+.vscode
+m_venv
+venv
