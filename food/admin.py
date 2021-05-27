@@ -19,7 +19,7 @@ class StepRecipeAdmin(admin.ModelAdmin):
 
 
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'step')
+    list_display = ('name', )
 
 
 admin.site.register(Food, FoodAdmin)
