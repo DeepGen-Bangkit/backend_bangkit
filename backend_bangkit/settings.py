@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "users",
     "kehamilan",
     "awal_menyusui",
+    'food',
 ]
 
 SITE_ID = 1
