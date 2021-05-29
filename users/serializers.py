@@ -4,7 +4,9 @@ from rest_auth.serializers import LoginSerializer
 from rest_framework import serializers
 
 from awal_menyusui.models import Menyusui
+from awal_menyusui.serializers import MenyusuiSerializer
 from kehamilan.models import Kehamilan
+from kehamilan.serializers import KehamilanSerializer
 from users.models import User
 
 
@@ -90,24 +92,24 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_kehamilan(self, obj):
         try:
-            Kehamilan.objects.get(user=obj)
+            data = Kehamilan.objects.get(user=obj)
         except Kehamilan.DoesNotExist:
             return []
-        return []
+        return KehamilanSerializer(instance=data).data
 
     def get_menyusui(self, obj):
         try:
-            Menyusui.objects.get(user=obj, is_mpasi=False)
+            data = Menyusui.objects.get(user=obj, is_mpasi=False)
         except Menyusui.DoesNotExist:
             return []
-        return []
+        return MenyusuiSerializer(instance=data).data
 
     def get_mpasi(self, obj):
         try:
-            Menyusui.objects.get(user=obj, is_mpasi=True)
+            data = Menyusui.objects.get(user=obj, is_mpasi=True)
         except Menyusui.DoesNotExist:
             return []
-        return []
+        return MenyusuiSerializer(instance=data).data
 
     class Meta:
         model = User
