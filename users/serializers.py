@@ -104,7 +104,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_mpasi(self, obj):
         try:
-            data = Menyusui.objects.get(user=obj, is_mpasi=True)
+            Menyusui.objects.get(user=obj, is_mpasi=True)
         except Menyusui.DoesNotExist:
             return []
         return []
