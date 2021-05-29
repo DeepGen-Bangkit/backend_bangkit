@@ -1,12 +1,15 @@
 from django.contrib import admin
 
 # Register your models here.
-from food.models import FoodNutrition, Food, StepRecipe, Recipe
+from food.models import FoodNutrition, Food, StepRecipe, Recipe, FoodIngredient
 
 
 class FoodNutritionAdmin(admin.TabularInline):
     model = FoodNutrition
     extra = 0
+
+class FoodIngredientsAdmin(admin.ModelAdmin):
+    list_display = ('food','count','desc')
 
 
 class FoodAdmin(admin.ModelAdmin):
@@ -25,3 +28,4 @@ class RecipeAdmin(admin.ModelAdmin):
 admin.site.register(Food, FoodAdmin)
 admin.site.register(StepRecipe, StepRecipeAdmin)
 admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(FoodIngredient, FoodIngredientsAdmin)

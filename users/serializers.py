@@ -56,6 +56,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     def custom_signup(self, request, user):
         user.date_birth = self.get_cleaned_data()['date_birth']
         user.phase = self.get_cleaned_data()['phase']
+        user.username = self.get_cleaned_data()['email']
         user.save()
         if user.phase == 1 or user.phase == 2:
             data = {
