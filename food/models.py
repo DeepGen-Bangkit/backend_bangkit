@@ -24,9 +24,23 @@ class FoodNutrition(models.Model):
 class StepRecipe(models.Model):
     step = models.TextField()
 
+    def __str__(self):
+        return self.step
+
+
+class FoodIngredient(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.CASCADE)
+    count = models.FloatField()
+    desc = models.CharField(max_length=200)
+
+    def __str__(self):
+        return "{} {}".format(self.food.name, self.count)
+
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
     step = models.ManyToManyField(StepRecipe)
+    ingredients = models.ManyToManyField(FoodIngredient)
+
 
 

@@ -1,9 +1,9 @@
 from rest_framework import routers
-from django.urls import path, re_path
 from . import views
 
 router = routers.SimpleRouter()
 router.register('bahan', views.FoodViewsSet)
+router.register('recipe', views.RecipeViewSet)
 
 urlpatterns = []
 urlpatterns += router.urls
