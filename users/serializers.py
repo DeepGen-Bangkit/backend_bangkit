@@ -90,21 +90,21 @@ class UserDetailsSerializer(serializers.ModelSerializer):
 
     def get_kehamilan(self, obj):
         try:
-            data = Kehamilan.objects.get(user=obj)
+            Kehamilan.objects.get(user=obj)
         except Kehamilan.DoesNotExist:
             return []
         return []
 
     def get_menyusui(self, obj):
         try:
-            data = Menyusui.objects.get(user=obj, is_mpasi=False)
+            Menyusui.objects.get(user=obj, is_mpasi=False)
         except Menyusui.DoesNotExist:
             return []
         return []
 
     def get_mpasi(self, obj):
         try:
-            data = Menyusui.objects.get(user=obj, is_mpasi=True)
+            Menyusui.objects.get(user=obj, is_mpasi=True)
         except Menyusui.DoesNotExist:
             return []
         return []
