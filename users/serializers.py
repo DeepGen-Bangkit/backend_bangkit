@@ -5,6 +5,7 @@ from rest_framework import serializers
 
 from awal_menyusui.models import Menyusui
 from kehamilan.models import Kehamilan
+from users.models import User
 
 
 class CustomLoginSerializer(LoginSerializer):
@@ -79,3 +80,35 @@ class CustomRegisterSerializer(RegisterSerializer):
                                      hpht=self.get_cleaned_data()['hpht'],
                                      ttl=self.get_cleaned_data()['ttl'])
         return user
+
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+    kehamilan = serializers.SerializerMethodField(read_only=True)
+    menyusui = serializers.SerializerMethodField(read_only=True)
+    mpasi = serializers.SerializerMethodField(read_only=True)
+    phase = serializers.CharField(source='get_phase_display')
+
+    def get_kehamilan(self, obj):
+        try:
+            data = Kehamilan.objects.get(user=obj)
+        except Kehamilan.DoesNotExist:
+            return []
+        return []
+
+    def get_menyusui(self, obj):
+        try:
+            data = Menyusui.objects.get(user=obj, is_mpasi=False)
+        except Menyusui.DoesNotExist:
+            return []
+        return []
+
+    def get_mpasi(self, obj):
+        try:
+            data = Menyusui.objects.get(user=obj, is_mpasi=True)
+        except Menyusui.DoesNotExist:
+            return []
+        return []
+
+    class Meta:
+        model = User
+        fields = ['pk', 'name', 'email', 'kehamilan', 'menyusui', 'mpasi', 'phase']
