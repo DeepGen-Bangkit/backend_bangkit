@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "kehamilan",
     "awal_menyusui",
     'food',
+    'mainproccess'
 ]
 
 SITE_ID = 1
@@ -105,6 +106,10 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer',
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserDetailsSerializer',
 }
 
 REST_FRAMEWORK = {
