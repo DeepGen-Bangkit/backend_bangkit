@@ -8,3 +8,4 @@ geoip
 .vscode
 m_venv
 venv
+__pycache__/*
