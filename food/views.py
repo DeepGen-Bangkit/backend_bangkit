@@ -17,7 +17,7 @@ class MultiNameFilter(django_filters.Filter):
             values = value.split(',')
             lens = len(values)
             if len(values) not in [0, 1] and values[lens-1] != '':
-                return qs.filter(name__in=value)
+                return qs.filter(name__in=values)
             return qs.filter(name__iregex=value)
 
 
@@ -32,7 +32,7 @@ class FoodRecipeFilter(django_filters.Filter):
             values = value.split(',')
             lens = len(values)
             if len(values) not in [0, 1] and values[lens-1] != '':
-                return qs.filter(ingredients__food__name__in=value)
+                return qs.filter(ingredients__food__name__in=values)
             return qs.filter(ingredients__food__name__iregex=value)
 
 
