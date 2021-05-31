@@ -57,8 +57,18 @@ class FoodViewsSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = FoodSerializer
     filterset_class = FoodFilter
 
+    def get_serializer_context(self):
+        context = super(FoodViewsSet, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context
+
 
 class RecipeViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializers
     filterset_class = FoodRecipeFilter
+
+    def get_serializer_context(self):
+        context = super(RecipeViewSet, self).get_serializer_context()
+        context.update({"request": self.request})
+        return context
