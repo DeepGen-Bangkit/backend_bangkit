@@ -8,8 +8,9 @@ class FoodNutritionAdmin(admin.TabularInline):
     model = FoodNutrition
     extra = 0
 
+
 class FoodIngredientsAdmin(admin.ModelAdmin):
-    list_display = ('food','count','desc')
+    list_display = ('food','count', )
 
 
 class FoodAdmin(admin.ModelAdmin):
