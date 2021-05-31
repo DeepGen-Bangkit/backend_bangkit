@@ -26,12 +26,12 @@ class FoodRecipeFilter(django_filters.Filter):
         if not value:
             return qs
         if isinstance(value, list):
-            return qs.filter(ingredients__name__in=value)
+            return qs.filter(ingredients__food__name__in=value)
         elif isinstance(value, str):
-            return qs.filter(ingredients__name__iexact=value)
+            return qs.filter(ingredients__food__name__iexact=value)
         else:
             value = value.split(',')
-            return qs.filter(ingredients__name__in=value)
+            return qs.filter(ingredients__food__name__in=value)
 
 
 class FoodFilter(django_filters.rest_framework.FilterSet):
@@ -53,12 +53,10 @@ class FoodRecipeFilter(django_filters.rest_framework.FilterSet):
 class FoodViewsSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
-    permission_classes = [IsAuthenticated,]
     filterset_class = FoodFilter
 
 
 class RecipeViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializers
-    permission_classes = [IsAuthenticated, ]
     filterset_class = FoodRecipeFilter
