@@ -14,7 +14,7 @@ class MultiNameFilter(django_filters.Filter):
         if isinstance(value, list):
             return qs.filter(name__in=value)
         elif isinstance(value, str):
-            return qs.filter(name__iexact=value)
+            return qs.filter(name__iregex=value)
         else:
             value = value.split(',')
             return qs.filter(name__in=value)
@@ -28,7 +28,7 @@ class FoodRecipeFilter(django_filters.Filter):
         if isinstance(value, list):
             return qs.filter(ingredients__food__name__in=value)
         elif isinstance(value, str):
-            return qs.filter(ingredients__food__name__iexact=value)
+            return qs.filter(ingredients__food__name__iregex=value)
         else:
             value = value.split(',')
             return qs.filter(ingredients__food__name__in=value)
