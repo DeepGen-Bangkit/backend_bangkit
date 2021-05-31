@@ -27,7 +27,7 @@ class RecipeSerializers(serializers.ModelSerializer):
         return obj.step.values('step')
 
     def get_ingredients(self, obj):
-        return obj.ingredients.values('foodingredient__food__name', 'count', 'desc')
+        return obj.ingredients.values('food__name', 'count', 'desc')
 
     class Meta:
         model = Recipe
