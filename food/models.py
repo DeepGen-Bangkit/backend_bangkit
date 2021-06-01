@@ -1,3 +1,4 @@
+from django.core.validators import FileExtensionValidator
 from django.db import models
 
 
@@ -5,7 +6,7 @@ from django.db import models
 
 class Food(models.Model):
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='food/', null=True)
+    image = models.FileField(upload_to='food/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])])
     kcal = models.IntegerField()
 
     def __str__(self):
@@ -57,7 +58,7 @@ class FoodIngredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='recipe/', null=True)
+    image = models.FileField(upload_to='recipe/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])])
     step = models.ManyToManyField(StepRecipe)
     ingredients = models.ManyToManyField(FoodIngredient)
     protein = models.CharField(max_length=100)

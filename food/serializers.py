@@ -188,7 +188,7 @@ class FoodSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Food
-        fields = ('id', 'name', 'kcal', 'nutrition')
+        fields = ('id', 'name', 'kcal', 'nutrition', 'image')
 
 
 #
@@ -227,6 +227,7 @@ class RecipeSerializers(serializers.ModelSerializer):
             ret['protein_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['protein'].split(' ')[0])
             ret['lemak_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['lemak'].split(' ')[0])
             ret['karbo_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['carbo'].split(' ')[0])
+
         return ret
 
     class Meta:
