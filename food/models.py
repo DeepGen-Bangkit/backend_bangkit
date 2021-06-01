@@ -60,6 +60,6 @@ class Recipe(models.Model):
     image = models.ImageField(upload_to='recipe/', null=True)
     step = models.ManyToManyField(StepRecipe)
     ingredients = models.ManyToManyField(FoodIngredient)
-
-
-
+    protein = models.CharField(max_length=100)
+    lemak = models.CharField(max_length=100)
+    karbo = models.CharField(max_length=100)
