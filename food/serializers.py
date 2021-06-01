@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import serializers
 from food.models import Food, FoodNutrition, Recipe, FoodIngredient
 from food.utils import count_nutrition
@@ -181,6 +182,11 @@ class FoodNutritionSerializer(serializers.ModelSerializer):
 
 class FoodSerializer(serializers.ModelSerializer):
     nutrition = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, obj):
+        if obj.image:
+            return settings.URL + obj.image.url
 
     def get_nutrition(self, obj):
         data = obj.foodnutrition_set.all()
@@ -207,6 +213,11 @@ class FoodIngredientSerializer(serializers.ModelSerializer):
 class RecipeSerializers(serializers.ModelSerializer):
     step = serializers.SerializerMethodField()
     ingredients = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, obj):
+        if obj.image:
+            return settings.URL + obj.image.url
 
     def get_step(self, obj):
         return obj.step.values('step')
