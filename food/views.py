@@ -63,7 +63,7 @@ class FoodViewsSet(viewsets.GenericViewSet, mixins.ListModelMixin):
         return context
 
 
-class RecipeViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+class RecipeViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializers
     filterset_class = FoodRecipeFilter
