@@ -57,7 +57,7 @@ class FoodIngredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=200)
-    image = models.FileField(upload_to='recipe/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])])
+    image = models.FileField(upload_to='recipe/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg', 'webp'])])
     step = models.ManyToManyField(StepRecipe)
     estimated = models.CharField(max_length=200)
     ingredients = models.ManyToManyField(FoodIngredient)
