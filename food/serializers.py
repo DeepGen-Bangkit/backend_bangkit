@@ -28,152 +28,97 @@ class FoodNutritionSerializer(serializers.ModelSerializer):
     niasin = serializers.SerializerMethodField()
     vit_c = serializers.SerializerMethodField()
 
+    def count_data(self, obj, nutrition, name):
+        if self.context['request'].GET.get('count'):
+            if 'resep' in self.context['request'].get_full_path():
+                count = obj.food.foodingredient_set.values('count')
+                return count_nutrition(nutrition, count[0]['count'], name)
+            else:
+                return count_nutrition(nutrition, 100, name)
+
     def get_carbo(self, obj):
         data = obj.carbo
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'carbo')
-        return data
+        return self.count_data(obj, data, 'carbo')
 
     def get_protein(self, obj):
         data = obj.protein
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'protein')
-        return data
+        return self.count_data(obj, data, 'protein')
 
     def get_lemak(self, obj):
         data = obj.lemak
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'lemak')
-        return data
+        return self.count_data(obj, data, 'lemak')
 
     def get_air(self, obj):
         data = obj.air
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'air')
-        return data
+        return self.count_data(obj, data, 'air')
 
     def get_energi(self, obj):
         data = obj.energi
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'energi')
-        return data
+        return self.count_data(obj, data, 'energi')
 
     def get_serat(self, obj):
         data = obj.serat
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'serat')
-        return data
+        return self.count_data(obj, data, 'serat')
 
     def get_abu(self, obj):
         data = obj.abu
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'abu')
-        return data
+        return self.count_data(obj, data, 'abu')
 
     def get_kalsium(self, obj):
         data = obj.kalsium
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'kalsium')
-        return data
+        return self.count_data(obj, data, 'kalsium')
 
     def get_fosfor(self, obj):
         data = obj.fosfor
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'fosfor')
-        return data
+        return self.count_data(obj, data, 'fosfor')
 
     def get_natrium(self, obj):
         data = obj.natrium
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'natrium')
-        return data
+        return self.count_data(obj, data, 'natrium')
 
     def get_besi(self, obj):
         data = obj.besi
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'besi')
-        return data
+        return self.count_data(obj, data, 'besi')
 
     def get_kalium(self, obj):
         data = obj.kalium
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'kalium')
-        return data
+        return self.count_data(obj, data, 'kalium')
 
     def get_tembaga(self, obj):
         data = obj.tembaga
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'tembaga')
-        return data
+        return self.count_data(obj, data, 'tembaga')
 
     def get_seng(self, obj):
         data = obj.seng
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'seng')
-        return data
+        return self.count_data(obj, data, 'seng')
 
     def get_retinol(self, obj):
         data = obj.retinol
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'retinol')
-        return data
+        return self.count_data(obj, data, 'retinol')
 
     def get_b_kar(self, obj):
         data = obj.b_kar
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'b_kar')
-        return data
+        return self.count_data(obj, data, 'b_kar')
 
     def get_kar_total(self, obj):
         data = obj.kar_total
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'kar_total')
-        return data
+        return self.count_data(obj, data, 'kar_total')
 
     def get_thiamin(self, obj):
         data = obj.thiamin
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'thiamin')
-        return data
+        return self.count_data(obj, data, 'thiamin')
 
     def get_riboflavin(self, obj):
         data = obj.riboflavin
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'riboflavin')
-        return data
+        return self.count_data(obj, data, 'riboflavin')
 
     def get_niasin(self, obj):
         data = obj.niasin
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'niasin')
-        return data
+        return self.count_data(obj, data, 'niasin')
 
     def get_vit_c(self, obj):
         data = obj.vit_c
-        if self.context['request'].GET.get('count'):
-            count = obj.food.foodingredient_set.values('count')
-            return count_nutrition(data, count[0]['count'], 'vit_c')
-        return data
+        return self.count_data(obj, data, 'vit_c')
 
     class Meta:
         model = FoodNutrition
