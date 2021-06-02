@@ -1,6 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
 from food.models import FoodNutrition, Food, StepRecipe, Recipe, FoodIngredient
 
 
