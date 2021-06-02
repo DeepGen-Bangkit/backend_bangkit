@@ -5,7 +5,7 @@ from django.db import models
 class Food(models.Model):
     name = models.CharField(max_length=200)
     kode = models.CharField(max_length=200)
-    image = models.FileField(upload_to='food/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])])
+    image = models.FileField(upload_to='food/', null=True, validators=[FileExtensionValidator(['pdf', 'doc', 'svg'])], max_length=200)
     kcal = models.IntegerField()
 
     def __str__(self):
