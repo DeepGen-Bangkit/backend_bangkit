@@ -28,3 +28,4 @@ admin.site.register(Food, FoodAdmin)
 admin.site.register(StepRecipe, StepRecipeAdmin)
 admin.site.register(Recipe, RecipeAdmin)
 admin.site.register(FoodIngredient, FoodIngredientsAdmin)
+
