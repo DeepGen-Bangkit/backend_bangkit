@@ -57,7 +57,7 @@ class FoodRecipeFilter(django_filters.rest_framework.FilterSet):
 
 
 class FoodViewsSet(viewsets.GenericViewSet, mixins.ListModelMixin):
-    queryset = Food.objects.all().order_by('-id')
+    queryset = Food.objects.all().order_by('name')
     serializer_class = FoodSerializer
     filterset_class = FoodFilter
 
@@ -68,7 +68,7 @@ class FoodViewsSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 
 
 class RecipeViewSet(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
-    queryset = Recipe.objects.all().order_by('-id')
+    queryset = Recipe.objects.all().order_by('id')
     serializer_class = RecipeSerializers
     filterset_class = FoodRecipeFilter
 
