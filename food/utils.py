@@ -18,11 +18,11 @@ def count_nutrition(before, count, name):
 
 
 def convert_mg_to_g(name, nutrition):
-    if name in type_1 + type_2:
-        nutri = nutrition / 1000
+    if name in type_1:
+        nutri = float(nutrition) / 1000
         return nutri
     else:
-        return nutrition
+        return float(nutrition)
 
 
 def count_presentation(nutrition, total):

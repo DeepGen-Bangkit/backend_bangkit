@@ -104,7 +104,7 @@ class ListNutritionView(APIView):
             for key, values in nutrition[0].items():
                 if key not in ['id', 'food_id']:
                     count_nutritions[key] = count_nutrition(values, d['count'], key)
-                    total_nutrition += convert_mg_to_g(key, count_nutritions[key])
+                    total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
             food['nutrition'] = count_nutritions
             food['kcal'] = round(food_name.kcal * (d['count'] / 100), 2)
             food['count'] = d['count']
