@@ -83,6 +83,10 @@ class ListNutritionView(APIView):
     def post(self, request, *args):
         data = request.data
         food_nutrition = []
+        kcal_total = 0
+        lemak_total = 0
+        protein_total = 0
+        carbo_total = 0
         for d in data:
             try:
                 food_name = Food.objects.get(name=d['name'])
@@ -102,5 +106,15 @@ class ListNutritionView(APIView):
             food['nutrition'] = count_nutritions
             food['kcal'] = round(food_name.kcal * (d['count'] / 100), 2)
             food['count'] = d['count']
+            kcal_total += food['kcal']
+            lemak_total += count_nutritions['lemak'].split(' ')[0]
+            protein_total += count_nutritions['protein'].split(' ')[0]
+            carbo_total += count_nutritions['carbo'].split(' ')[0]
             food_nutrition.append(food)
-        return Response(food_nutrition, status=status.HTTP_200_OK)
+        ret = {
+            "lemak_total": lemak_total + "g",
+            "protein_total": protein_total + "g",
+            "carbo_total": carbo_total + "g",
+            "food": food_nutrition
+        }
+        return Response(ret, status=status.HTTP_200_OK)
