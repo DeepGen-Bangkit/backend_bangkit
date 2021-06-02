@@ -91,6 +91,7 @@ class ListNutritionView(APIView):
                     "msg": "Bahan Makanan {} Tidak Ditemukan".format(d)
                 }
                 food_nutrition.append(ret)
+                return Response(food_nutrition, status=status.HTTP_400_BAD_REQUEST)
             food = {}
             nutrition = FoodNutrition.objects.filter(food__name=d['name']).values()
             food['name'] = d['name']
