@@ -107,9 +107,9 @@ class ListNutritionView(APIView):
             food['kcal'] = round(food_name.kcal * (d['count'] / 100), 2)
             food['count'] = d['count']
             kcal_total += food['kcal']
-            lemak_total += count_nutritions['lemak'].split(' ')[0]
-            protein_total += count_nutritions['protein'].split(' ')[0]
-            carbo_total += count_nutritions['carbo'].split(' ')[0]
+            lemak_total += float(count_nutritions['lemak'].split(' ')[0])
+            protein_total += float(count_nutritions['protein'].split(' ')[0])
+            carbo_total += float(count_nutritions['carbo'].split(' ')[0])
             food_nutrition.append(food)
         ret = {
             "lemak_total": lemak_total + "g",
