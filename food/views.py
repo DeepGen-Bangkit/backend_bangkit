@@ -115,11 +115,11 @@ class ListNutritionView(APIView):
             food_nutrition.append(food)
         ret = {
             "lemak_total": "{} {}".format(lemak_total, "g"),
-            "lemak_presentase": count_presentation(lemak_total, total_nutrition),
+            "lemak_presentase": "{}".format(count_presentation(lemak_total, total_nutrition)),
             "protein_total": "{} {}".format(protein_total, "g"),
-            "protein_presentase": count_presentation(protein_total, total_nutrition),
+            "protein_presentase": "{}".format(count_presentation(protein_total, total_nutrition)),
             "carbo_total": "{} {}".format(carbo_total, "g"),
-            "carbo_presentase": count_presentation(carbo_total, total_nutrition),
+            "carbo_presentase": "{}".format(count_presentation(carbo_total, total_nutrition)),
             "food": food_nutrition
         }
         return Response(ret, status=status.HTTP_200_OK)
