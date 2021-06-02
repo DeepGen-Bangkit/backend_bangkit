@@ -127,7 +127,6 @@ class FoodNutritionSerializer(serializers.ModelSerializer):
 
 class FoodSerializer(serializers.ModelSerializer):
     nutrition = serializers.SerializerMethodField()
-    image = serializers.SerializerMethodField()
 
     def get_nutrition(self, obj):
         data = obj.foodnutrition_set.all()
@@ -154,7 +153,6 @@ class FoodIngredientSerializer(serializers.ModelSerializer):
 class RecipeSerializers(serializers.ModelSerializer):
     step = serializers.SerializerMethodField()
     ingredients = serializers.SerializerMethodField()
-    image = serializers.SerializerMethodField()
 
     def get_step(self, obj):
         return obj.step.values('step')
