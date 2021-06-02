@@ -88,7 +88,7 @@ class ListNutritionView(APIView):
                 food_name = Food.objects.get(name=d['name'])
             except Food.DoesNotExist:
                 ret = {
-                    "msg": "Bahan Makanan {} Tidak Ditemukan".format(d)
+                    "msg": "Bahan Makanan {} Tidak Ditemukan".format(d['name'])
                 }
                 food_nutrition.append(ret)
                 return Response(food_nutrition, status=status.HTTP_400_BAD_REQUEST)
