@@ -30,7 +30,7 @@ class FoodNutritionSerializer(serializers.ModelSerializer):
 
     def count_data(self, obj, nutrition, name):
         if self.context['request'].GET.get('count'):
-            if 'resep' in self.context['request'].get_full_path():
+            if 'recipe' in self.context['request'].get_full_path():
                 count = obj.food.foodingredient_set.values('count')
                 return count_nutrition(nutrition, count[0]['count'], name)
             else:
