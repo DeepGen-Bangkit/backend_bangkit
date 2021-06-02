@@ -129,10 +129,6 @@ class FoodSerializer(serializers.ModelSerializer):
     nutrition = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
 
-    def get_image(self, obj):
-        if obj.image:
-            return settings.URL + obj.image.url
-
     def get_nutrition(self, obj):
         data = obj.foodnutrition_set.all()
         return FoodNutritionSerializer(instance=data, many=True, context={'request': self.context['request']}).data
@@ -159,10 +155,6 @@ class RecipeSerializers(serializers.ModelSerializer):
     step = serializers.SerializerMethodField()
     ingredients = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
-
-    def get_image(self, obj):
-        if obj.image:
-            return settings.URL + obj.image.url
 
     def get_step(self, obj):
         return obj.step.values('step')

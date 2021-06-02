@@ -1,6 +1,10 @@
+type_1 = ['kalsium', 'fosfor', 'besi', 'natrium', 'kalium', 'tembaga', 'seng', 'retinol', 'thiamin', 'riboflavin',
+          'niasin', 'vit_c']
+type_2 = ['b_kar', 'kar_total']
+
+
 def count_nutrition(before, count, name):
-    type_1 = ['kalsium', 'fosfor', 'besi', 'natrium', 'kalium', 'tembaga', 'seng', 'retinol', 'thiamin', 'riboflavin', 'niasin', 'vit_c']
-    type_2 = ['b_kar', 'kar_total']
+
     data = before * (count/100)
     if name == 'energi':
         ret = "{} {}".format(data, 'kal')
@@ -11,3 +15,16 @@ def count_nutrition(before, count, name):
     else:
         ret = "{} {}".format(data, 'g')
     return ret
+
+
+def convert_mg_to_g(name, nutrition):
+    if name in type_1 + type_2:
+        nutri = nutrition / 1000
+        return nutri
+    else:
+        return nutrition
+
+
+def count_presentation(nutrition, total):
+    presentation = (nutrition * total) / 100
+    return presentation

@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 
 from food.serializers import FoodSerializer, RecipeSerializers
 from food.models import Food, Recipe, FoodNutrition
-from food.utils import count_nutrition
+from food.utils import count_nutrition, convert_mg_to_g, count_presentation
 
 
 class MultiNameFilter(django_filters.Filter):
@@ -87,6 +87,7 @@ class ListNutritionView(APIView):
         lemak_total = 0
         protein_total = 0
         carbo_total = 0
+        total_nutrition = 0
         for d in data:
             try:
                 food_name = Food.objects.get(name=d['name'])
@@ -103,6 +104,7 @@ class ListNutritionView(APIView):
             for key, values in nutrition[0].items():
                 if key not in ['id', 'food_id']:
                     count_nutritions[key] = count_nutrition(values, d['count'], key)
+                    total_nutrition += convert_mg_to_g(key, count_nutritions[key])
             food['nutrition'] = count_nutritions
             food['kcal'] = round(food_name.kcal * (d['count'] / 100), 2)
             food['count'] = d['count']
@@ -113,8 +115,11 @@ class ListNutritionView(APIView):
             food_nutrition.append(food)
         ret = {
             "lemak_total": "{} {}".format(lemak_total, "g"),
+            "lemak_presentase": count_presentation(lemak_total, total_nutrition),
             "protein_total": "{} {}".format(protein_total, "g"),
+            "protein_presentase": count_presentation(protein_total, total_nutrition),
             "carbo_total": "{} {}".format(carbo_total, "g"),
+            "carbo_presentase": count_presentation(carbo_total, total_nutrition),
             "food": food_nutrition
         }
         return Response(ret, status=status.HTTP_200_OK)
