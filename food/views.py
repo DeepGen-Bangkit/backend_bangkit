@@ -112,6 +112,7 @@ class ListNutritionView(APIView):
             lemak_total += float(count_nutritions['lemak'].split(' ')[0])
             protein_total += float(count_nutritions['protein'].split(' ')[0])
             carbo_total += float(count_nutritions['carbo'].split(' ')[0])
+            food['image'] = food_name.image.url
             food_nutrition.append(food)
         ret = {
             "lemak_total": "{} {}".format(lemak_total, "g"),
