@@ -196,4 +196,4 @@ class RecipeSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        exclude = []
+        exclude = ['lemak', 'karbo', 'protein']
