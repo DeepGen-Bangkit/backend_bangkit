@@ -174,8 +174,11 @@ class RecipeSerializers(serializers.ModelSerializer):
         lens = len(ret['ingredients'])
         ret['kcal_total'] = 0
         ret['protein_total'] = 0
+        ret['protein_presentase'] = 0
         ret['lemak_total'] = 0
+        ret['lemak_presentase'] = 0
         ret['karbo_total'] = 0
+        ret['karbo_presentase'] = 0
         total_nutrition = 0
         #total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
         for y in range(lens):
