@@ -15,6 +15,8 @@
 
 ```git clone https://github.com/DeepGen-Bangkit/backend_bangkit.git```
 
+-  rename .env.example to .env
+
 -  ensure you have install [Docker link](https://www.docker.com/)
 
 -  run command ```docker-compose build -d```
