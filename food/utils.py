@@ -26,5 +26,5 @@ def convert_mg_to_g(name, nutrition):
 
 
 def count_presentation(nutrition, total):
-    presentation = round((nutrition / total) * 100, 2)
+    presentation = round((nutrition * 100) / total, 2)
     return presentation
