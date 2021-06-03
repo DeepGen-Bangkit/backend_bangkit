@@ -108,9 +108,9 @@ class ListNutritionView(APIView):
                     total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
                     new_total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
             food['nutrition'] = count_nutritions
-            food['presentase_protein'] = count_presentation(count_nutritions['protein'].split(' ')[0], new_total_nutrition)
-            food['presentase_lemak'] = count_presentation(count_nutritions['lemak'].split(' ')[0], new_total_nutrition)
-            food['presentase_carbo'] = count_presentation(count_nutritions['carbo'].split(' ')[0], new_total_nutrition)
+            food['presentase_protein'] = count_presentation(float(count_nutritions['protein'].split(' ')[0]), new_total_nutrition)
+            food['presentase_lemak'] = count_presentation(float(count_nutritions['lemak'].split(' ')[0]), new_total_nutrition)
+            food['presentase_carbo'] = count_presentation(float(count_nutritions['carbo'].split(' ')[0]), new_total_nutrition)
             food['kcal'] = round(food_name.kcal * (d['count'] / 100), 2)
             food['count'] = d['count']
             kcal_total += food['kcal']
