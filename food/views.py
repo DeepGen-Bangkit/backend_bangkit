@@ -121,6 +121,7 @@ class ListNutritionView(APIView):
             "protein_presentase": "{}".format(count_presentation(protein_total, total_nutrition)),
             "carbo_total": "{} {}".format(carbo_total, "g"),
             "carbo_presentase": "{}".format(count_presentation(carbo_total, total_nutrition)),
+            "kcal_total": "{}".format(kcal_total),
             "food": food_nutrition
         }
         return Response(ret, status=status.HTTP_200_OK)
