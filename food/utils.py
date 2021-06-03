@@ -21,6 +21,9 @@ def convert_mg_to_g(name, nutrition):
     if name in type_1:
         nutri = round(float(nutrition) / 1000, 2)
         return nutri
+    elif name in type_2:
+        nutri = round(float(nutrition) / 1000000, 2)
+        return nutri
     else:
         return float(nutrition)
 
