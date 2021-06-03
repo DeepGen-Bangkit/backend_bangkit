@@ -130,7 +130,7 @@ class FoodSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     def get_image(self, obj):
-        return obj.image.url
+        return obj.image.name.replace("/code/", "")
 
     def get_nutrition(self, obj):
         data = obj.foodnutrition_set.all()
@@ -160,7 +160,7 @@ class RecipeSerializers(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     def get_image(self, obj):
-        return obj.image.url
+        return obj.image.name.replace("/code/", "")
 
     def get_step(self, obj):
         return obj.step.values('step')
