@@ -180,7 +180,7 @@ class RecipeSerializers(serializers.ModelSerializer):
         #total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
         for y in range(lens):
             for key, value in ret['ingredients'][y]['food'][0]['nutrition'][0].items():
-                if key not in ['id', 'food_id']:
+                if key not in ['id', 'food']:
                     total_nutrition += convert_mg_to_g(key, value)
             ret['kcal_total'] += ret['ingredients'][y]['food'][0]['kcal']
             ret['protein_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['protein'].split(' ')[0])
