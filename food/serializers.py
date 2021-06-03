@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework import serializers
 from food.models import Food, FoodNutrition, Recipe, FoodIngredient
-from food.utils import count_nutrition
+from food.utils import count_nutrition, count_presentation, convert_mg_to_g
 
 
 class FoodNutritionSerializer(serializers.ModelSerializer):
@@ -176,12 +176,18 @@ class RecipeSerializers(serializers.ModelSerializer):
         ret['protein_total'] = 0
         ret['lemak_total'] = 0
         ret['karbo_total'] = 0
+        total_nutrition = 0
+        #total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
         for y in range(lens):
+            for key, value in ret['ingredients'][y]['food'][0]['nutrition'][0].items():
+                total_nutrition += convert_mg_to_g(key, value)
             ret['kcal_total'] += ret['ingredients'][y]['food'][0]['kcal']
             ret['protein_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['protein'].split(' ')[0])
+            ret['protein_presentase'] += count_presentation(ret['protein_total'], total_nutrition)
             ret['lemak_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['lemak'].split(' ')[0])
+            ret['lemak_presentase'] += count_presentation(ret['lemak_total'], total_nutrition)
             ret['karbo_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['carbo'].split(' ')[0])
-
+            ret['karbo_presentase'] += count_presentation(ret['karbo_total'], total_nutrition)
         return ret
 
     class Meta:
