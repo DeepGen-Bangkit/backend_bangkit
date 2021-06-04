@@ -105,8 +105,9 @@ class ListNutritionView(APIView):
             for key, values in nutrition[0].items():
                 if key not in ['id', 'food_id']:
                     count_nutritions[key] = count_nutrition(values, d['count'], key)
-                    total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
-                    new_total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
+                    if key != 'energi':
+                        total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
+                        new_total_nutrition += convert_mg_to_g(key, count_nutritions[key].split(' ')[0])
             food['nutrition'] = count_nutritions
             food['presentase_protein'] = count_presentation(float(count_nutritions['protein'].split(' ')[0]), new_total_nutrition)
             food['presentase_lemak'] = count_presentation(float(count_nutritions['lemak'].split(' ')[0]), new_total_nutrition)
