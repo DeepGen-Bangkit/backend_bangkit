@@ -192,6 +192,10 @@ class RecipeSerializers(serializers.ModelSerializer):
             ret['lemak_presentase'] += count_presentation(ret['lemak_total'], total_nutrition)
             ret['karbo_total'] += round(float(ret['ingredients'][y]['food'][0]['nutrition'][0]['carbo'].split(' ')[0]), 1)
             ret['karbo_presentase'] += count_presentation(ret['karbo_total'], total_nutrition)
+        ret['kcal_total'] = round(ret['kcal_total'], 1)
+        ret['protein_total'] = round(ret['protein_total'], 1)
+        ret['lemak_total'] = round(ret['lemak_total'], 1)
+        ret['karbo_total'] = round(ret['karbo_total'], 1)
         return ret
 
     class Meta:
