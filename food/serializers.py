@@ -186,11 +186,11 @@ class RecipeSerializers(serializers.ModelSerializer):
                 if key not in ['id', 'food', 'energi']:
                     total_nutrition += convert_mg_to_g(key, value.split(" ")[0])
             ret['kcal_total'] += ret['ingredients'][y]['food'][0]['kcal']
-            ret['protein_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['protein'].split(' ')[0])
+            ret['protein_total'] += round(float(ret['ingredients'][y]['food'][0]['nutrition'][0]['protein'].split(' ')[0]), 1)
             ret['protein_presentase'] += count_presentation(ret['protein_total'], total_nutrition)
-            ret['lemak_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['lemak'].split(' ')[0])
+            ret['lemak_total'] += round(float(ret['ingredients'][y]['food'][0]['nutrition'][0]['lemak'].split(' ')[0]), 1)
             ret['lemak_presentase'] += count_presentation(ret['lemak_total'], total_nutrition)
-            ret['karbo_total'] += float(ret['ingredients'][y]['food'][0]['nutrition'][0]['carbo'].split(' ')[0])
+            ret['karbo_total'] += round(float(ret['ingredients'][y]['food'][0]['nutrition'][0]['carbo'].split(' ')[0]), 1)
             ret['karbo_presentase'] += count_presentation(ret['karbo_total'], total_nutrition)
         return ret
 

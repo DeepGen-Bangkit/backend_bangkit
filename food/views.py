@@ -121,11 +121,11 @@ class ListNutritionView(APIView):
             food['image'] = food_name.image.name.replace("/code/", "")
             food_nutrition.append(food)
         ret = {
-            "lemak_total": "{} {}".format(lemak_total, "g"),
+            "lemak_total": "{} {}".format(round(lemak_total, 2), "g"),
             "lemak_presentase": "{}".format(count_presentation(lemak_total, total_nutrition)),
-            "protein_total": "{} {}".format(protein_total, "g"),
+            "protein_total": "{} {}".format(round(lemak_total, 2), "g"),
             "protein_presentase": "{}".format(count_presentation(protein_total, total_nutrition)),
-            "carbo_total": "{} {}".format(carbo_total, "g"),
+            "carbo_total": "{} {}".format(round(carbo_total), "g"),
             "carbo_presentase": "{}".format(count_presentation(carbo_total, total_nutrition)),
             "kcal_total": "{}".format(kcal_total),
             "food": food_nutrition
